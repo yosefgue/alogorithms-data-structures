@@ -27,7 +27,7 @@ namespace unitTests
 
         public void Test(int[] arrayValue, int[] expected)
         {
-            int[] result = SelectionSort.Sort(arrayValue);
+            int[] result = SelectionSort.SortList(arrayValue);
             Assert.Equal(expected, result);
         }
     }

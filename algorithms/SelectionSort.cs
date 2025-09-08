@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,31 +9,23 @@ namespace algorithms
 {
     public static class SelectionSort
     {
-        public static int Smallest(List<int> anarray)
+        public static int[] SortList(int[] anarray)
         {
-            int smallestint = anarray[0];
-            int smallestintindex = 0;
-            for (int i = 1; i < anarray.Count; i++ )
+            for (int i = 0; i < anarray.Length; i++)
             {
-                if (smallestint > anarray[i])
+                int smallestindex = i;
+                for (int j = i + 1 ; j < anarray.Length; j++)
                 {
-                    smallestint = anarray[i];
-                    smallestintindex = i;
+                    if (anarray[smallestindex] > anarray[j])
+                    {
+                        smallestindex = j;
+                    }
                 }
+                int temp = anarray[i];
+                anarray[i] = anarray[smallestindex];
+                anarray[smallestindex] = temp;
             }
-            return smallestintindex;
-        }
-        public static int[] Sort(int[] anarray)
-        {
-            List<int> copyarray = anarray.ToList();
-            List<int> list = new List<int> ();
-            for (int i = 0;  i < anarray.Length; i++ )
-            {
-                int smallestint = copyarray[Smallest(copyarray)];
-                list.Add(smallestint);
-                copyarray.Remove(smallestint);
-            }
-            return list.ToArray();
+            return anarray;
         }
     }
 }
